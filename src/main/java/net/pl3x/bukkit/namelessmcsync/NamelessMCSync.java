@@ -97,6 +97,9 @@ public class NamelessMCSync extends JavaPlugin implements Listener {
                 return;
             }
             String websiteGroup = getConfig().getString("groups." + namelessPlayer.groupID, "");
+            if (websiteGroup.isEmpty()) {
+                return;
+            }
             boolean hasGroup = false;
             for (String group : permission.getGroups()) {
                 if (group.equals(websiteGroup)) {
