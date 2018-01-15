@@ -19,7 +19,6 @@ public class CheckWebAPIConnection {
     public CheckWebAPIConnection(final NamelessMCSync plugin) {
         try {
             URL apiConnection = new URL(String.valueOf(plugin.apiURL) + "/checkConnection");
-            System.out.println("CHECK: " + apiConnection);
             HttpURLConnection connection = (HttpURLConnection) apiConnection.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Length", Integer.toString(0));
@@ -38,12 +37,10 @@ public class CheckWebAPIConnection {
             JsonObject response = new JsonObject();
             JsonParser parser = new JsonParser();
             response = parser.parse(responseBuilder.toString()).getAsJsonObject();
-            System.out.println("RESPONSE: " + responseString);
             if (response.has("success") || response.get("message").getAsString().equalsIgnoreCase("Invalid API method")) {
                 error = false;
                 succeeded = true;
             } else if (response.has("error")) {
-                System.out.println(response);
                 error = true;
                 succeeded = false;
                 errorMessage = response.get("message").getAsString();

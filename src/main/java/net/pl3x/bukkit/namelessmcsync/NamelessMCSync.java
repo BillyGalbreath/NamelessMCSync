@@ -94,7 +94,6 @@ public class NamelessMCSync extends JavaPlugin implements Listener {
         public void run() {
             NamelessPlayer namelessPlayer = new NamelessPlayer(player.getUniqueId().toString(), NamelessMCSync.this);
             if (!namelessPlayer.exists || !namelessPlayer.validated) {
-                getLogger().warning("does not exist or not validated!");
                 return;
             }
             String websiteGroup = getConfig().getString("groups." + namelessPlayer.groupID, "");
@@ -110,12 +109,10 @@ public class NamelessMCSync extends JavaPlugin implements Listener {
                 return;
             }
             if (permission.playerInGroup(null, player, websiteGroup)) {
-                getLogger().warning("already in group");
                 return;
             }
             String primaryGroup = permission.getPrimaryGroup(player);
             if (websiteGroup.equals(primaryGroup)) {
-                getLogger().warning("already in group (2)");
                 return;
             }
             if (!permission.playerAddGroup(null, player, websiteGroup)) {

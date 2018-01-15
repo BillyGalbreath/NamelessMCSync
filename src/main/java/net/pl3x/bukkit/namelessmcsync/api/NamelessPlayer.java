@@ -48,7 +48,6 @@ public class NamelessPlayer {
             JsonObject response = new JsonObject();
             JsonObject message = new JsonObject();
             response = parser.parse(responseBuilder.toString()).getAsJsonObject();
-            System.out.println("RESPONSE: " + responseString);
             if (!response.has("error")) {
                 message = parser.parse(response.get("message").getAsString()).getAsJsonObject();
             }
